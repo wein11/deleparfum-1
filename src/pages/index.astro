@@ -20,6 +20,8 @@ const products = [
   { name: 'Lattafa Asad Yara Candy',     slug: 'lattafa-asad-yara-candy',     descriptor: 'Dulce · Gourmand',       p10: 9000,  p20: 16000 },
   { name: 'Lattafa Honor and Glory',     slug: 'lattafa-honor-and-glory',     descriptor: 'Amaderado · Especiado',  p10: 9000,  p20: 16000 },
   { name: 'French Avenue Liquid Brun',   slug: 'french-avenue-liquid-brun',   descriptor: 'Oriental · Amaderado',   p10: 12000, p20: 19000, featured: true },
+  { name: 'Her Confession',             slug: 'her-confession',              descriptor: 'Floral · Almizclado',    p10: 12000, p20: 20000, ext: 'jpeg' },
+  { name: 'Teriaq Intense',             slug: 'teriaq-intense',              descriptor: 'Oriental · Especiado',   p10: 12000, p20: 20000, ext: 'jpeg' },
 ];
 
 const featured  = products.filter(p => p.featured);
@@ -112,7 +114,7 @@ const waGeneral = `${WA_BASE}?text=${encodeURIComponent('Hola! Quiero consultar 
 
         <div class="featured-image-wrap">
           <img
-            src={`/assets/products/${p.slug}.jpg`}
+            src={`/assets/products/${p.slug}.${p.ext || 'jpg'}`}
             alt={`Frasco de ${p.name}`}
             class="featured-image"
             loading="lazy"
@@ -176,7 +178,7 @@ const waGeneral = `${WA_BASE}?text=${encodeURIComponent('Hola! Quiero consultar 
 
           <div class="card-image-wrap">
             <img
-              src={`/assets/products/${p.slug}.jpg`}
+              src={`/assets/products/${p.slug}.${p.ext || 'jpg'}`}
               alt={`Frasco de ${p.name}`}
               class="card-image"
               loading="lazy"
