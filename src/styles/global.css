@@ -746,10 +746,48 @@ footer {
 }
 
 /* ============================================================
+   WHATSAPP FAB
+   ============================================================ */
+.wa-fab {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wa-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+.wa-fab svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}
+
+@keyframes wa-pulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,.35), 0 0 0 0 rgba(37,211,102,.45); }
+  50%       { box-shadow: 0 4px 16px rgba(0,0,0,.35), 0 0 0 10px rgba(37,211,102,0); }
+}
+
+.wa-fab { animation: wa-pulse 2.5s ease infinite; }
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .scroll-indicator-line,
   .hero::before { animation: none !important; }
   .card-image { transition: none !important; }
+  .wa-fab { animation: none !important; }
 }
