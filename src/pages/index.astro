@@ -34,6 +34,30 @@ const products = [
 const featured     = products.filter(p => p.featured);
 const newArrivals  = products.filter(p => p.newArrival);
 const waGeneral = `${WA_BASE}?text=${encodeURIComponent('Hola! Quiero consultar sobre fragancias disponibles.')}`;
+
+const storeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'OnlineStore',
+  name: 'Dele Parfum',
+  url: 'https://deleparfum.com.ar',
+  logo: 'https://deleparfum.com.ar/assets/logo.png',
+  sameAs: ['https://instagram.com/deleparfum'],
+  areaServed: 'AR',
+};
+
+const productsJsonLd = products.map((p) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: p.name,
+  image: `https://deleparfum.com.ar/assets/products/${p.slug}.${p.ext || 'jpg'}`,
+  description: p.descriptor,
+  offers: {
+    '@type': 'Offer',
+    price: p.p10,
+    priceCurrency: 'ARS',
+    availability: 'https://schema.org/InStock',
+  },
+}));
 ---
 
 <!DOCTYPE html>
@@ -67,6 +91,11 @@ const waGeneral = `${WA_BASE}?text=${encodeURIComponent('Hola! Quiero consultar 
   />
 
   <title>Dele Parfum — Decants de Lujo</title>
+
+  <script type="application/ld+json" set:html={JSON.stringify(storeJsonLd)}></script>
+  {productsJsonLd.map((p) => (
+    <script type="application/ld+json" set:html={JSON.stringify(p)}></script>
+  ))}
 </head>
 
 <body>
